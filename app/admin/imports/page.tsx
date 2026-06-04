@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Upload, FileSpreadsheet, FileText, CheckCircle2, AlertCircle, Clock, Download } from 'lucide-react'
-import { DashboardLayout } from '@/components/layout'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -76,154 +75,152 @@ export default function ImportsPage() {
   }
 
   return (
-    <DashboardLayout workspace="admin">
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Data Imports</h1>
-          <p className="text-muted-foreground">Import customers, leads, and contacts from CSV or Excel files</p>
-        </div>
-
-        <Tabs defaultValue="upload" className="space-y-6">
-          <TabsList>
-            <TabsTrigger value="upload">Upload Files</TabsTrigger>
-            <TabsTrigger value="history">Import History</TabsTrigger>
-            <TabsTrigger value="templates">Templates</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="upload" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Upload Data File</CardTitle>
-                <CardDescription>Drag and drop or click to upload CSV or Excel files</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div
-                  className={`relative rounded-lg border-2 border-dashed p-12 text-center transition-colors ${
-                    dragActive ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
-                  }`}
-                  onDragEnter={handleDrag}
-                  onDragLeave={handleDrag}
-                  onDragOver={handleDrag}
-                  onDrop={handleDrop}
-                >
-                  <input
-                    type="file"
-                    accept=".csv,.xlsx,.xls"
-                    className="absolute inset-0 cursor-pointer opacity-0"
-                    onChange={() => simulateUpload()}
-                  />
-                  <Upload className="mx-auto h-12 w-12 text-muted-foreground" />
-                  <p className="mt-4 text-lg font-medium">Drop your file here, or click to browse</p>
-                  <p className="mt-2 text-sm text-muted-foreground">Supports CSV and Excel files up to 50MB</p>
-                </div>
-
-                {isUploading && (
-                  <div className="mt-6 space-y-2">
-                    <div className="flex items-center justify-between text-sm">
-                      <span>Uploading file...</span>
-                      <span>{uploadProgress}%</span>
-                    </div>
-                    <Progress value={uploadProgress} />
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-
-            <div className="grid gap-4 md:grid-cols-2">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Import Guidelines</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3 text-sm text-muted-foreground">
-                  <p>1. Ensure your file has headers in the first row</p>
-                  <p>2. Required fields: name, email (for customers/leads)</p>
-                  <p>3. Date format should be YYYY-MM-DD</p>
-                  <p>4. Phone numbers should include country code</p>
-                  <p>5. Maximum 100,000 records per import</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Supported Formats</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <FileText className="h-8 w-8 text-emerald-600" />
-                    <div>
-                      <p className="font-medium">CSV Files</p>
-                      <p className="text-sm text-muted-foreground">Comma-separated values</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <FileSpreadsheet className="h-8 w-8 text-emerald-600" />
-                    <div>
-                      <p className="font-medium">Excel Files</p>
-                      <p className="text-sm text-muted-foreground">.xlsx and .xls formats</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="history">
-            <Card>
-              <CardHeader>
-                <CardTitle>Import History</CardTitle>
-                <CardDescription>View all past import operations</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>File Name</TableHead>
-                      <TableHead>Type</TableHead>
-                      <TableHead>Records</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead>Errors</TableHead>
-                      <TableHead>Date</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {importHistory.map((item) => (
-                      <TableRow key={item.id}>
-                        <TableCell className="font-medium">{item.name}</TableCell>
-                        <TableCell>{item.type}</TableCell>
-                        <TableCell>{item.records.toLocaleString()}</TableCell>
-                        <TableCell>{getStatusBadge(item.status)}</TableCell>
-                        <TableCell className={item.errors > 0 ? 'text-red-600' : ''}>{item.errors}</TableCell>
-                        <TableCell>{item.date}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="templates">
-            <div className="grid gap-4 md:grid-cols-2">
-              {importTemplates.map((template) => (
-                <Card key={template.name}>
-                  <CardHeader>
-                    <CardTitle className="text-base">{template.name}</CardTitle>
-                    <CardDescription>{template.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center justify-between">
-                      <Badge variant="secondary">{template.format}</Badge>
-                      <Button variant="outline" size="sm">
-                        <Download className="mr-2 h-4 w-4" />
-                        Download
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-3xl font-bold tracking-tight">Data Imports</h1>
+        <p className="text-muted-foreground">Import customers, leads, and contacts from CSV or Excel files</p>
       </div>
-    </DashboardLayout>
+
+      <Tabs defaultValue="upload" className="space-y-6">
+        <TabsList>
+          <TabsTrigger value="upload">Upload Files</TabsTrigger>
+          <TabsTrigger value="history">Import History</TabsTrigger>
+          <TabsTrigger value="templates">Templates</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="upload" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Upload Data File</CardTitle>
+              <CardDescription>Drag and drop or click to upload CSV or Excel files</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div
+                className={`relative rounded-lg border-2 border-dashed p-12 text-center transition-colors ${
+                  dragActive ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
+                }`}
+                onDragEnter={handleDrag}
+                onDragLeave={handleDrag}
+                onDragOver={handleDrag}
+                onDrop={handleDrop}
+              >
+                <input
+                  type="file"
+                  accept=".csv,.xlsx,.xls"
+                  className="absolute inset-0 cursor-pointer opacity-0"
+                  onChange={() => simulateUpload()}
+                />
+                <Upload className="mx-auto h-12 w-12 text-muted-foreground" />
+                <p className="mt-4 text-lg font-medium">Drop your file here, or click to browse</p>
+                <p className="mt-2 text-sm text-muted-foreground">Supports CSV and Excel files up to 50MB</p>
+              </div>
+
+              {isUploading && (
+                <div className="mt-6 space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <span>Uploading file...</span>
+                    <span>{uploadProgress}%</span>
+                  </div>
+                  <Progress value={uploadProgress} />
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">Import Guidelines</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm text-muted-foreground">
+                <p>1. Ensure your file has headers in the first row</p>
+                <p>2. Required fields: name, email (for customers/leads)</p>
+                <p>3. Date format should be YYYY-MM-DD</p>
+                <p>4. Phone numbers should include country code</p>
+                <p>5. Maximum 100,000 records per import</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">Supported Formats</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <FileText className="h-8 w-8 text-emerald-600" />
+                  <div>
+                    <p className="font-medium">CSV Files</p>
+                    <p className="text-sm text-muted-foreground">Comma-separated values</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <FileSpreadsheet className="h-8 w-8 text-emerald-600" />
+                  <div>
+                    <p className="font-medium">Excel Files</p>
+                    <p className="text-sm text-muted-foreground">.xlsx and .xls formats</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
+
+        <TabsContent value="history">
+          <Card>
+            <CardHeader>
+              <CardTitle>Import History</CardTitle>
+              <CardDescription>View all past import operations</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>File Name</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Records</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Errors</TableHead>
+                    <TableHead>Date</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {importHistory.map((item) => (
+                    <TableRow key={item.id}>
+                      <TableCell className="font-medium">{item.name}</TableCell>
+                      <TableCell>{item.type}</TableCell>
+                      <TableCell>{item.records.toLocaleString()}</TableCell>
+                      <TableCell>{getStatusBadge(item.status)}</TableCell>
+                      <TableCell className={item.errors > 0 ? 'text-red-600' : ''}>{item.errors}</TableCell>
+                      <TableCell>{item.date}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="templates">
+          <div className="grid gap-4 md:grid-cols-2">
+            {importTemplates.map((template) => (
+              <Card key={template.name}>
+                <CardHeader>
+                  <CardTitle className="text-base">{template.name}</CardTitle>
+                  <CardDescription>{template.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center justify-between">
+                    <Badge variant="secondary">{template.format}</Badge>
+                    <Button variant="outline" size="sm">
+                      <Download className="mr-2 h-4 w-4" />
+                      Download
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </TabsContent>
+      </Tabs>
+    </div>
   )
 }
