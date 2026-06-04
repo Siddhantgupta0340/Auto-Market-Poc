@@ -20,6 +20,7 @@ const workspaceLabels: Record<Workspace, string> = {
   marketer: 'Marketer Workspace',
   campaign: 'Campaign Manager',
   analytics: 'Analytics Manager',
+  
 }
 
 export function AppNavbar() {

@@ -37,14 +37,6 @@ const roles = [
     isSystem: true,
   },
   {
-    id: 'ROLE-004',
-    name: 'Analyst',
-    description: 'View-only access to analytics and reports',
-    userCount: 1,
-    permissions: ['analytics', 'reports'],
-    isSystem: true,
-  },
-  {
     id: 'ROLE-005',
     name: 'Viewer',
     description: 'Read-only access to platform data',

@@ -12,7 +12,7 @@ const workspaces = [
   { value: 'admin', label: 'Admin Workspace', href: '/admin/dashboard' },
   { value: 'marketer', label: 'Marketer Workspace', href: '/marketer/dashboard' },
   { value: 'campaign', label: 'Campaign Manager', href: '/campaign/dashboard' },
-  { value: 'analytics', label: 'Analytics Manager', href: '/analytics/dashboard' },
+  // { value: 'analytics', label: 'Analytics Manager', href: '/analytics/dashboard' },
 ]
 
 const workspaceCards = [
@@ -37,13 +37,13 @@ const workspaceCards = [
     color: 'orange',
     href: '/campaign/dashboard',
   },
-  {
-    title: 'Analytics Manager',
-    description: 'Monitor conversions, revenue, campaign performance, and customer growth.',
-    icon: BarChart3,
-    color: 'purple',
-    href: '/analytics/dashboard',
-  },
+  // {
+  //   title: 'Analytics Manager',
+  //   description: 'Monitor conversions, revenue, campaign performance, and customer growth.',
+  //   icon: BarChart3,
+  //   color: 'purple',
+  //   href: '/analytics/dashboard',
+  // },
 ]
 
 const colorClasses = {

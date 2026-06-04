@@ -18,7 +18,7 @@ const users = [
   { id: 'USR-001', name: 'Sarah Johnson', email: 'sarah.johnson@company.com', role: 'Admin', status: 'active', lastLogin: '2024-03-15 09:30', createdAt: '2023-01-15' },
   { id: 'USR-002', name: 'Michael Chen', email: 'michael.chen@company.com', role: 'Marketer', status: 'active', lastLogin: '2024-03-15 08:45', createdAt: '2023-02-20' },
   { id: 'USR-003', name: 'Emily Davis', email: 'emily.davis@company.com', role: 'Campaign Manager', status: 'active', lastLogin: '2024-03-14 16:20', createdAt: '2023-03-10' },
-  { id: 'USR-004', name: 'James Wilson', email: 'james.wilson@company.com', role: 'Analyst', status: 'inactive', lastLogin: '2024-02-28 11:00', createdAt: '2023-04-05' },
+  { id: 'USR-004', name: 'James Wilson', email: 'james.wilson@company.com', role: 'Viewer', status: 'inactive', lastLogin: '2024-02-28 11:00', createdAt: '2023-04-05' },
   { id: 'USR-005', name: 'Jessica Brown', email: 'jessica.brown@company.com', role: 'Marketer', status: 'active', lastLogin: '2024-03-15 10:15', createdAt: '2023-05-12' },
   { id: 'USR-006', name: 'David Lee', email: 'david.lee@company.com', role: 'Viewer', status: 'active', lastLogin: '2024-03-13 14:30', createdAt: '2023-06-18' },
   { id: 'USR-007', name: 'Amanda Martinez', email: 'amanda.martinez@company.com', role: 'Campaign Manager', status: 'active', lastLogin: '2024-03-15 07:00', createdAt: '2023-07-22' },
@@ -29,7 +29,6 @@ const roleColors: Record<string, string> = {
   'Admin': 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300',
   'Marketer': 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
   'Campaign Manager': 'bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300',
-  'Analyst': 'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300',
   'Viewer': 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300',
 }
 
@@ -86,7 +85,6 @@ export default function UsersPage() {
                     <SelectItem value="admin">Admin</SelectItem>
                     <SelectItem value="marketer">Marketer</SelectItem>
                     <SelectItem value="campaign_manager">Campaign Manager</SelectItem>
-                    <SelectItem value="analyst">Analyst</SelectItem>
                     <SelectItem value="viewer">Viewer</SelectItem>
                   </SelectContent>
                 </Select>
